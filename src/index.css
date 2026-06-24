@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+/* Family member signature colors, exposed as theme tokens so we can use
+   utilities like bg-dad / text-mom / ring-sammy throughout the app. */
+@theme {
+  --color-dad: #2563eb;     /* blue */
+  --color-dad-soft: #dbeafe;
+  --color-mom: #fb7185;     /* coral */
+  --color-mom-soft: #ffe4e6;
+  --color-siddhu: #16a34a;  /* green */
+  --color-siddhu-soft: #dcfce7;
+  --color-sammy: #7c3aed;   /* purple */
+  --color-sammy-soft: #ede9fe;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: #faf7ff;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
