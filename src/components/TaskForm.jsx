@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Modal from './Modal'
 import MemberChip from './MemberChip'
 
@@ -20,6 +20,20 @@ export default function TaskForm({
   )
   const [saving, setSaving] = useState(false)
   const [err, setErr] = useState(null)
+
+  // The form stays mounted between opens (only its visibility toggles), so its
+  // state would otherwise persist. Reset every time it opens: empty for a new
+  // task, or the task's values when editing.
+  useEffect(() => {
+    if (!open) return
+    setTitle(task?.title || '')
+    setDescription(task?.description || '')
+    setDueDate(task?.due_date || '')
+    setAssigneeIds(task ? task.assignees.map((a) => a.id) : currentMember ? [currentMember.id] : [])
+    setErr(null)
+    setSaving(false)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [open, task])
 
   const toggle = (id) =>
     setAssigneeIds((ids) => (ids.includes(id) ? ids.filter((x) => x !== id) : [...ids, id]))
